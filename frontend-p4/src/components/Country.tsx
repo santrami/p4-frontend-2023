@@ -1,16 +1,41 @@
 import { useEffect, useState } from "react";
 
 type resultProps = {
-  image: string;
   id: Number;
+  image: string;
 };
 
-const URL1 = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=2&api_key=${import.meta.env.VITE_API_TOKEN}`;
+type Pagination = {
+  page: number;
+  setPage: (page: number) => void;
+};
 
-const URL2=`https://rickandmortyapi.com/api/character`; 
+function NavPage({ page, setPage }: Pagination) {
+  return (
+    <>
+      <header className="d-flex justify-content-between align-items-center">
+        <p>Page: {page}</p>
+
+        <button
+          className="btn btn-primary btn-sm"
+          onClick={() => setPage(page + 1)}
+        >
+          Page {page + 1}
+        </button>
+      </header>
+    </>
+  );
+}
+
+const URL1 = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=2&api_key=${
+  import.meta.env.VITE_API_TOKEN
+}`;
+
 export default function Country() {
   const [apiCall, setApiCall] = useState<resultProps[]>([]);
+  const [page, setPage] = useState(1);
 
+  const URL2 = `https://rickandmortyapi.com/api/character?page=${page}`;
   const apiData = async function fetchData() {
     const response = await fetch(URL2);
     const { results } = (await response.json()) as { results: resultProps[] };
@@ -19,7 +44,11 @@ export default function Country() {
 
   useEffect(() => {
     apiData();
-  }, []);
+  }, [page]);
+
+  if (apiCall === undefined) {
+    return null;
+  }
 
   console.log(apiCall);
 
@@ -34,6 +63,7 @@ export default function Country() {
           ))}
         </h1>
       }
+      <NavPage page={page} setPage={setPage} />
     </div>
   );
 }

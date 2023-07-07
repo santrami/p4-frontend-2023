@@ -1,10 +1,10 @@
 import './App.css'
-import Country from './components/Country.tsx'
+import Characters from './components/Characters.tsx'
 function App() {
 
   return (
     <>
-      <Country />
+      <Characters />
     </>
   )
 }

@@ -9,8 +9,6 @@ type resultProps = {
   origin: string;
 };
 
-
-
 export default function Characters() {
   const [apiCall, setApiCall] = useState<resultProps[]>();
   const [page, setPage] = useState(1);
@@ -34,9 +32,10 @@ export default function Characters() {
 
   return (
     <>
-      <div className="flex flex-column">
+      <NavPage page={page} setPage={setPage} />
+      <div className="flex justify-center flex-wrap gap-3">
         {apiCall.map((char) => (
-          <div className="flex-1" key={char.id.toString()}>
+          <div className="" key={char.id.toString()}>
             <Character
               id={char.id}
               name={char.name}
@@ -46,7 +45,6 @@ export default function Characters() {
           </div>
         ))}
       </div>
-      <NavPage page={page} setPage={setPage} />
     </>
   );
 }

@@ -7,7 +7,7 @@ type Character = {
 
 export default function Character({name, origin, image }: Character) {
   return (
-    <div>
+    <div className="w-auto">
       <img src={image.toString()} />
       {name.toString()}
       {origin.toString()}

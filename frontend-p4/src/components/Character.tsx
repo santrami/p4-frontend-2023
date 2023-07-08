@@ -1,16 +1,17 @@
 type Character = {
-  id: number;
   name: string;
-  origin: string;
+  origin:{
+    name: string;
+  }
   image: string;
 };
 
 export default function Character({name, origin, image }: Character) {
   return (
-    <div className="w-auto">
-      <img src={image.toString()} />
-      {name.toString()}
-      {origin.toString()}
+    <div className="bg-amber-300 text-slate-800 text-center hover:rounded-3xl transition-all cursor-pointer hover:scale-110 shadow-lg">
+      <img src={image} /> <br />
+      {name} <br />
+      {origin.name}
     </div>
   );
 }

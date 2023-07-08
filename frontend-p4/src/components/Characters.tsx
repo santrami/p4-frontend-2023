@@ -6,7 +6,10 @@ type resultProps = {
   id: number;
   image: string;
   name: string;
-  origin: string;
+  origin:{
+    name: string;
+  } 
+    
 };
 
 export default function Characters() {
@@ -35,9 +38,8 @@ export default function Characters() {
       <NavPage page={page} setPage={setPage} />
       <div className="flex justify-center flex-wrap gap-3">
         {apiCall.map((char) => (
-          <div className="" key={char.id.toString()}>
+          <div className="" key={char.id}>
             <Character
-              id={char.id}
               name={char.name}
               origin={char.origin}
               image={char.image}

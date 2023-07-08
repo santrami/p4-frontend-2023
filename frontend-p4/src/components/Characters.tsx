@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Character from "./Character";
+import NavPage from "./Pagination";
 
 type resultProps = {
   id: number;
@@ -8,28 +9,7 @@ type resultProps = {
   origin: string;
 };
 
-type Pagination = {
-  page: number;
-  setPage: (page: number) => void;
-};
 
-function NavPage({ page, setPage }: Pagination) {
-  return (
-    <>
-      <header className="d-flex justify-content-between align-items-center">
-        <p>Page: {page}</p>
-
-        <button className="button" onClick={() => setPage(page - 1)}>
-          Page {page - 1}
-        </button>
-
-        <button className="button" onClick={() => setPage(page + 1)}>
-          Page {page + 1}
-        </button>
-      </header>
-    </>
-  );
-}
 
 export default function Characters() {
   const [apiCall, setApiCall] = useState<resultProps[]>();

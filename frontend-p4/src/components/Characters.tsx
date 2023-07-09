@@ -41,28 +41,32 @@ export default function Characters() {
 
   return (
     <>
-      <NavPage page={page} setPage={setPage} />
-      <div className="flex justify-center flex-wrap gap-3">
-        {selectedCharacter ? (
+      {selectedCharacter ? (
+        <div className="flex flex-column justify-center text-center">
           <CharDetails
             name={selectedCharacter.name}
             origin={selectedCharacter.origin}
             image={selectedCharacter.image}
             onClick={() => setSelectedCharacter(null)}
           />
-        ) : (
-          apiCall.map((char) => (
-            <div className="" key={char.id}>
-              <Character
-                name={char.name}
-                origin={char.origin}
-                image={char.image}
-                onClick={() => handleCharacterClick(char)}
-              />
-            </div>
-          ))
-        )}
-      </div>
+        </div>
+      ) : (
+        <>
+          <NavPage page={page} setPage={setPage} />
+          <div className="flex justify-center flex-wrap gap-5">
+            {apiCall.map((char) => (
+              <div key={char.id}>
+                <Character
+                  name={char.name}
+                  origin={char.origin}
+                  image={char.image}
+                  onClick={() => handleCharacterClick(char)}
+                />
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 }

@@ -10,6 +10,9 @@ type resultProps = {
   origin: {
     name: string;
   };
+  gender: string;
+  species: string;
+  status: string;
 };
 
 export default function Characters() {
@@ -37,16 +40,17 @@ export default function Characters() {
     setSelectedCharacter(character);
   };
 
-  console.log(apiCall);
-
   return (
     <>
       {selectedCharacter ? (
-        <div className="flex flex-column justify-center text-center">
+        <div className="flex flex-col items-center justify-center text-center h-full">
           <CharDetails
             name={selectedCharacter.name}
             origin={selectedCharacter.origin}
             image={selectedCharacter.image}
+            gender={selectedCharacter.gender}
+            species={selectedCharacter.species}
+            status={selectedCharacter.status}
             onClick={() => setSelectedCharacter(null)}
           />
         </div>
